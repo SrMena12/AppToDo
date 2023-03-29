@@ -4,23 +4,23 @@
   <div class="row justify-content-md-center">
     <div class="row col-lg-3">
       <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Añadir Tarea" aria-label="Añadir Tarea" aria-describedby="button-addon2" [(ngModel)]="newTarea">
-        <button class="btn btn-outline-primary" type="button" id="button-addon2" (click)="anadirTarea()">Añadir</button>
+        <input type="text" class="form-control" placeholder="Añadir Tarea" aria-label="Añadir Tarea" aria-describedby="button-addon2" [(ngModel)]="newTarea"> <!-- Con ngModel vinculo el valor del input a newTarea para asignarle el valor que escriba-->
+        <button class="btn btn-outline-primary" type="button" id="button-addon2" (click)="anadirTarea()">Añadir</button> <!--Al pusar sobre el botón se ejecuta la función anadirTarea-->
       </div>
       <table class="table justify-content-center">
         <tbody>
-          <tr *ngFor="let tarea of tareas; let i = index;">
-            <th scope="row">{{ i + 1 }}</th>
+          <tr *ngFor="let tarea of tareas; let i = index;"><!--Con el ngfor itero sobre "tareas" y voy añadiendo filas a la tabla para cada tarea-->
+            <th scope="row">{{ i + 1 }}</th> <!--Por cada fila añadida se irá incrementando en 1 el valor-->
             <td>
               <ng-container *ngIf="!tarea.editando; else editar">
-                <span class="{{ !tarea.Completada ? 'done' : '' }}" (click)="completada(i)">{{ tarea.nombre }}</span>
+                <span class="{{ !tarea.Completada ? 'done' : '' }}" (click)="completada(i)">{{ tarea.nombre }}</span><!--Si se hace click cambia el estado a completada y el estilo a "done"-->
               </ng-container>
               <ng-template #editar>
-                <input type="text" [(ngModel)]="tarea.nombre" (keyup.enter)="guardarNombre(i)" (blur)="cancelarEdicion(tarea)">
-              </ng-template>
+                <input type="text" [(ngModel)]="tarea.nombre" (keyup.enter)="guardarNombre(i)" (blur)="cancelarEdicion(tarea)"><!--Si la tarea está siendo editada se muestra este campo de texto-->
+              </ng-template>                                                                                                   <!--Si pulsamos sobre enter se guarda el nuevo nombre-->
             </td>
-            <td><i class="bi bi-brush-fill justify-content-right" style="cursor: pointer;" (click)="editarTarea(tarea)"></i></td>
-            <td><i class="bi bi-x-circle justify-content-left" style="color: red; font-weight: bold; cursor: pointer;" (click)="borrar(i)"></i></td>
+            <td><i class="bi bi-brush-fill justify-content-right" style="cursor: pointer;" (click)="editarTarea(tarea)"></i></td><!--Muestra el icono de un lapiz para que al hacer click ejecute la funcion "editar"-->
+            <td><i class="bi bi-x-circle justify-content-left" style="color: red; font-weight: bold; cursor: pointer;" (click)="borrar(i)"></i></td><!--Muestra el icono X para que al pulsar sobre ella se borre la tarea-->
           </tr>
           
      </table>

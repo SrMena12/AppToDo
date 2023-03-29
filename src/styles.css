@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~bootstrap-icons/font/bootstrap-icons.css";
+@import "~bootstrap-icons/font/bootstrap-icons.css";/* Importo los iconos de bootstrap para poder usarlos en todo el proyecto */
 .done{
     color: green;
 }
